@@ -1,11 +1,23 @@
 /** In this file, we create a React component which incorporates components provided by material-ui */
 
+
+// hook up firebase db to react
 const React = require('react');
+const ReactFire = require('reactfire');
+
+
+const Firebase = require('firebase');
 const RaisedButton = require('material-ui/lib/raised-button');
 const Dialog = require('material-ui/lib/dialog');
 const ThemeManager = require('material-ui/lib/styles/theme-manager');
 const LightRawTheme = require('material-ui/lib/styles/raw-themes/light-raw-theme');
 const Colors = require('material-ui/lib/styles/colors');
+
+
+//db root url
+const rootUrl = 'https://materialtodo.firebaseio.com/#'
+
+
 
 const Main = React.createClass({
 
