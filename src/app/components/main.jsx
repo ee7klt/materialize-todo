@@ -15,12 +15,12 @@ const Colors = require('material-ui/lib/styles/colors');
 
 
 //db root url
-const rootUrl = 'https://materialtodo.firebaseio.com/#'
+const rootUrl = 'https://materialtodo.firebaseio.com/'
 
 
 
 const Main = React.createClass({
-
+  mixins: [ReactFire],
   childContextTypes: {
     muiTheme: React.PropTypes.object
   },
@@ -43,6 +43,11 @@ const Main = React.createClass({
     });
 
     this.setState({muiTheme: newMuiTheme});
+
+      this.fb = new Firebase(rootUrl);
+      this.bindAsArray(this.fb,'items');
+
+
   },
 
   render() {
