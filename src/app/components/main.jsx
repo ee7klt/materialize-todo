@@ -8,6 +8,8 @@ const ReactFire = require('reactfire');
 
 const Firebase = require('firebase');
 const RaisedButton = require('material-ui/lib/raised-button');
+const AppBar = require('material-ui/lib/app-bar');
+const TextField = require('material-ui/lib/text-field');
 const Dialog = require('material-ui/lib/dialog');
 const ThemeManager = require('material-ui/lib/styles/theme-manager');
 const LightRawTheme = require('material-ui/lib/styles/raw-themes/light-raw-theme');
@@ -28,12 +30,13 @@ const Main = React.createClass({
   getInitialState () {
     return {
       muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
+      todo: ''
     };
   },
 
   getChildContext() {
     return {
-      muiTheme: this.state.muiTheme,
+      muiTheme: this.state.muiTheme
     };
   },
 
@@ -44,14 +47,11 @@ const Main = React.createClass({
 
     this.setState({muiTheme: newMuiTheme});
 
-      this.fb = new Firebase(rootUrl);
-      this.bindAsArray(this.fb,'items');
-
-
+    this.fb = new Firebase(rootUrl);
+    this.bindAsArray(this.fb,'items');
   },
 
   render() {
-
     let containerStyle = {
       textAlign: 'center',
       paddingTop: '200px'
@@ -62,24 +62,36 @@ const Main = React.createClass({
     ];
 
     return (
-      <div style={containerStyle}>
-        <Dialog
-          title="Super Secret Password"
-          actions={standardActions}
-          ref="superSecretPasswordDialog">
-          1-2-3-4-5
-        </Dialog>
+      <div>
+        <AppBar
+          title="Immaterial"
+          iconClassNameRight="muidocs-icon-navigation-expand-more" />
 
-        <h1>material-ui</h1>
-        <h2>example project</h2>
+        <div style={containerStyle}>
+          <TextField
+            hintText="Hint Text"
+            ref="newTodo"
 
-        <RaisedButton label="Super Secret Password" primary={true} onTouchTap={this._handleTouchTap} />
+            />
+          <Dialog
+            title="Go get 'em Tiger!"
+            actions={standardActions}
+            ref="superSecretPasswordDialog">
+            {this.state.todo}
+          </Dialog>
 
+          <h3>A journey of a thousand miles begins with a single step</h3>
+
+          <RaisedButton label="Carpe Diem" primary={true} onTouchTap={this._handleTouchTap} />
+
+        </div>
       </div>
     );
   },
 
   _handleTouchTap() {
+    this.setState({todo: this.refs.newTodo.getValue()});
+    console.log(this.state.todo);
     this.refs.superSecretPasswordDialog.show();
   }
 
