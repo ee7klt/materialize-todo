@@ -30,7 +30,7 @@ const Main = React.createClass({
   getInitialState () {
     return {
       muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
-      todo: ''
+      newTodo: ''
     };
   },
 
@@ -70,14 +70,15 @@ const Main = React.createClass({
         <div style={containerStyle}>
           <TextField
             hintText="Hint Text"
-            ref="newTodo"
+            onChange={this._handleTextFieldChange}
+            value = {this.state.newTodo}
 
             />
           <Dialog
             title="Go get 'em Tiger!"
             actions={standardActions}
             ref="superSecretPasswordDialog">
-            {this.state.todo}
+            {this.state.newTodo}
           </Dialog>
 
           <h3>A journey of a thousand miles begins with a single step</h3>
@@ -89,9 +90,16 @@ const Main = React.createClass({
     );
   },
 
+  _handleTextFieldChange: function(e) {
+    this.setState({
+      newTodo: e.target.value
+    })
+  },
+
   _handleTouchTap() {
-    this.setState({todo: this.refs.newTodo.getValue()});
-    console.log(this.state.todo);
+    //this.setState({todo: this.refs.newTodo.getValue()});
+    console.log(this.state.newTodo);
+
     this.refs.superSecretPasswordDialog.show();
   }
 
