@@ -7,8 +7,13 @@ const Colors = require('material-ui/lib/styles/colors');
 const AppBar = require('material-ui/lib/app-bar');
 const TodoInput = require('./todo-input.jsx');
 const List = require('./list.jsx');
+const Firebase = require('firebase');
+const ReactFire = require('reactfire');
+const rootUrl = 'https://materialtodo.firebaseio.com/'
 
 const Main = React.createClass({
+
+  mixins: [ReactFire],
 
   childContextTypes: {
     muiTheme: React.PropTypes.object
@@ -33,12 +38,15 @@ const Main = React.createClass({
     });
 
     this.setState({muiTheme: newMuiTheme});
+    var fb = new Firebase(rootUrl+'/items')
+    this.bindAsArray(fb,"items")
 
   },
 
   componentDidMount () {
       console.log('firebase mounted')
-      console.log(this.fb)
+      console.log(this.firebaseRefs)
+      console.log(this.state.items)
   },
 
   render() {
