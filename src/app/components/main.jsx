@@ -6,6 +6,7 @@ const LightRawTheme = require('material-ui/lib/styles/raw-themes/light-raw-theme
 const Colors = require('material-ui/lib/styles/colors');
 const AppBar = require('material-ui/lib/app-bar');
 const TodoInput = require('./todo-input.jsx');
+const List = require('./list.jsx');
 
 const Main = React.createClass({
 
@@ -15,7 +16,8 @@ const Main = React.createClass({
 
   getInitialState () {
     return {
-      muiTheme: ThemeManager.getMuiTheme(LightRawTheme)
+      muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
+      loaded: false
     };
   },
 
@@ -31,6 +33,12 @@ const Main = React.createClass({
     });
 
     this.setState({muiTheme: newMuiTheme});
+
+  },
+
+  componentDidMount () {
+      console.log('firebase mounted')
+      console.log(this.fb)
   },
 
   render() {
@@ -40,8 +48,9 @@ const Main = React.createClass({
     return (
       <div>
 
-<AppBar title="Title" iconClassNameRight ="muidocs-icon-navigation-expand-more" />
-<TodoInput />
+        <AppBar title="Title" iconClassNameRight ="muidocs-icon-navigation-expand-more" />
+        <TodoInput todoStore = {this.fb}/>
+        <List />
 
 
       </div>

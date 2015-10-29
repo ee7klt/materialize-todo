@@ -1,6 +1,7 @@
 const React = require('react')
 const FlatButton = require('material-ui/lib/flat-button');
 const TextField = require('material-ui/lib/text-field');
+const FloatingActionButton = require('material-ui/lib/floating-action-button');
 
 
 const TodoInput = React.createClass ({
@@ -16,9 +17,14 @@ const TodoInput = React.createClass ({
   render () {
     return (
 
-      <div>
-      <h1>this is TodoInput</h1>
-      <TextField />
+      <div className = 'inputStyle'>
+      <h1>Carpe Diem</h1>
+      <TextField
+        floatingLabelText="Add a To Do"
+        />
+        <FloatingActionButton>
+    
+  </FloatingActionButton>
       </div>
 );
   }
