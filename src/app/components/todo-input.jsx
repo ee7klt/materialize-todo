@@ -3,39 +3,30 @@ const FlatButton = require('material-ui/lib/flat-button');
 const TextField = require('material-ui/lib/text-field');
 
 
-module.exports = React.createClass ({
+const TodoInput = React.createClass ({
+
 
 
   getInitialState () {
     return {
-      newTodo: '';
-    }
+      newTodo: 'TodoInput'
+    };
   },
-  render () {<div className="inputStyle">
-    <TextField
-      hintText="Hint Text"
-      onChange={this._handleTextFieldChange}
-      value = {this.state.newTodo}
-      />
 
-    <FlatButton label="Carpe Diem" primary={true} onTouchTap={this._handleTouchTap} />
-  </div>
-},
+  render () {
+    return (
 
-_handleTextFieldChange: function(e) {
-  this.setState({
-    newTodo: e.target.value
-  })
-},
+      <div>
+      <h1>this is TodoInput</h1>
+      <TextField />
+      </div>
+);
+  }
 
-_handleTouchTap() {
-
-  console.log(this.state.newTodo);
-  this.props.todoStore.push(this.state.newTodo);
-
-
-}
 
 
 
 })
+
+
+module.exports = TodoInput;

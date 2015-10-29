@@ -1,27 +1,14 @@
 /** In this file, we create a React component which incorporates components provided by material-ui */
 
-
-// hook up firebase db to react
 const React = require('react');
-const ReactFire = require('reactfire');
-
-
-const Firebase = require('firebase');
-const AppBar = require('material-ui/lib/app-bar');
 const ThemeManager = require('material-ui/lib/styles/theme-manager');
 const LightRawTheme = require('material-ui/lib/styles/raw-themes/light-raw-theme');
 const Colors = require('material-ui/lib/styles/colors');
-
-//const TodoInput = require('./todo-input');
-
-
-//db root url
-const rootUrl = 'https://materialtodo.firebaseio.com/'
-
-
+const AppBar = require('material-ui/lib/app-bar');
+const TodoInput = require('./todo-input.jsx');
 
 const Main = React.createClass({
-  mixins: [ReactFire],
+
   childContextTypes: {
     muiTheme: React.PropTypes.object
   },
@@ -34,7 +21,7 @@ const Main = React.createClass({
 
   getChildContext() {
     return {
-      muiTheme: this.state.muiTheme
+      muiTheme: this.state.muiTheme,
     };
   },
 
@@ -44,9 +31,6 @@ const Main = React.createClass({
     });
 
     this.setState({muiTheme: newMuiTheme});
-
-    this.fb = new Firebase(rootUrl+'items/');
-    this.bindAsArray(this.fb,'items');
   },
 
   render() {
@@ -55,9 +39,9 @@ const Main = React.createClass({
 
     return (
       <div>
-        <h1>hello world!</h1>
-        //  <TodoInput todoStore = {this.fb}/>
 
+<AppBar title="Title" iconClassNameRight ="muidocs-icon-navigation-expand-more" />
+<TodoInput />
 
 
       </div>
