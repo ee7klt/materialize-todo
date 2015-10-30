@@ -22,7 +22,8 @@ const Main = React.createClass({
   getInitialState () {
     return {
       muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
-      loaded: false
+      loaded: false,
+      items: []
     };
   },
 
@@ -38,16 +39,18 @@ const Main = React.createClass({
     });
 
     this.setState({muiTheme: newMuiTheme});
-    var fb = new Firebase(rootUrl+'/items')
-    this.bindAsArray(fb,"items")
+    this.fb = new Firebase('https://materialtodo.firebaseio.com/items/');
+    this.bindAsArray(this.fb,'items')
+    this.fb.on('value', this.handleDataLoaded)
+
 
   },
 
-  componentDidMount () {
-      console.log('firebase mounted')
-      console.log(this.firebaseRefs)
-      console.log(this.state.items)
+  handleDataLoaded () {
+    console.log(this.state.items)
   },
+
+
 
   render() {
 
@@ -55,10 +58,10 @@ const Main = React.createClass({
 
     return (
       <div>
-
+        <h1 id="test">test</h1>
         <AppBar title="Title" iconClassNameRight ="muidocs-icon-navigation-expand-more" />
         <TodoInput todoStore = {this.fb}/>
-        <List />
+        <List items={this.state.items}/>
 
 
       </div>
