@@ -9,7 +9,11 @@ const TodoInput = require('./todo-input.jsx');
 const List = require('./list.jsx');
 const Firebase = require('firebase');
 const ReactFire = require('reactfire');
-const rootUrl = 'https://materialtodo.firebaseio.com/'
+const rootUrl = 'https://materialtodo.firebaseio.com/';
+const IconButton = require('material-ui/lib/icon-button');
+
+
+
 
 const Main = React.createClass({
 
@@ -42,12 +46,16 @@ const Main = React.createClass({
     this.fb = new Firebase('https://materialtodo.firebaseio.com/items/');
     this.bindAsArray(this.fb,'items')
     this.fb.on('value', this.handleDataLoaded)
+    //console.log(this.state.items)
 
 
   },
 
   handleDataLoaded () {
-    console.log(this.state.items)
+    this.setState({
+      loaded: true
+    })
+    //console.log("main " + this.state.items)
   },
 
 
@@ -58,16 +66,19 @@ const Main = React.createClass({
 
     return (
       <div>
-        <h1 id="test">test</h1>
-        <AppBar title="Title" iconClassNameRight ="muidocs-icon-navigation-expand-more" />
-        <TodoInput todoStore = {this.fb}/>
-        <List items={this.state.items}/>
+        <AppBar
+          title="Title"
+          />
 
 
-      </div>
-    );
-  }
+          <TodoInput todoStore = {this.fb}/>
+          <List items={this.state.items} loaded={this.state.loaded}/>
 
-});
 
-module.exports = Main;
+        </div>
+      );
+    }
+
+  });
+
+  module.exports = Main;
