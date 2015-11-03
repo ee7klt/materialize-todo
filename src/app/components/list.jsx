@@ -17,8 +17,11 @@ const List = React.createClass ({
 
   renderList () {
 
-
-    if ((this.props.loaded) && this.props.items && Object.keys(this.props.items).length != 0) {
+    if (this.props.items && Object.keys(this.props.items).length === 0) {
+        console.log(Object.keys(this.props.items).length)
+        return <div>add a to do to get started!</div>
+    }
+    else if (this.props.loaded) {
       var children = []
       //console.log(this.props.items)
       for (var key in this.props.items) {
@@ -28,9 +31,6 @@ const List = React.createClass ({
         children.push(<li key = {thisItem[".key"]}>{thisItem[".value"]}</li>)
       }
       return children
-    } else if (this.props.items && Object.keys(this.props.items).length === 0) {
-        console.log(Object.keys(this.props.items).length)
-        return <div>add a to do to get started!</div>
     }
   }
 

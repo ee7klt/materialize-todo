@@ -13,6 +13,11 @@ const TodoInput = React.createClass ({
       newTodo: 'TodoInput'
     };
   },
+  handleClick () {
+    console.log('pushing '+this.refs.todoInput.getValue()+" to firebase");
+    console.log(this.props.todoStore)
+      this.props.todoStore.push(this.refs.todoInput.getValue())
+  },
 
   render () {
     return (
@@ -21,10 +26,10 @@ const TodoInput = React.createClass ({
       <h1>Carpe Diem</h1>
       <TextField
         floatingLabelText="Add a To Do"
+        ref = "todoInput"
         />
-        <FloatingActionButton>
-    
-  </FloatingActionButton>
+      <FloatingActionButton onClick = {this.handleClick}>
+        </FloatingActionButton>
       </div>
 );
   }
