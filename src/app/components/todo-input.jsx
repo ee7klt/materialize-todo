@@ -8,11 +8,7 @@ const TodoInput = React.createClass ({
 
 
 
-  getInitialState () {
-    return {
-      newTodo: 'TodoInput'
-    };
-  },
+
   handleClick () {
     console.log('pushing '+this.refs.todoInput.getValue()+" to firebase");
     console.log(this.props.todoStore)

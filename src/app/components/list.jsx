@@ -21,7 +21,7 @@ const List = React.createClass ({
         console.log(Object.keys(this.props.items).length)
         return <div>add a to do to get started!</div>
     }
-    else if (this.props.loaded) {
+    else  {
       var children = []
       //console.log(this.props.items)
       for (var key in this.props.items) {

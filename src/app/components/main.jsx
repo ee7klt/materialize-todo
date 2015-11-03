@@ -72,7 +72,10 @@ const Main = React.createClass({
 
 
           <TodoInput todoStore = {this.fb}/>
-          <List items={this.state.items} loaded={this.state.loaded}/>
+          <div className={"content" + (this.state.loaded ? " loaded":"")} >
+              <List items={this.state.items}/>
+          </div>
+
 
 
         </div>
