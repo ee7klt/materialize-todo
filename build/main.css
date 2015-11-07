@@ -15,7 +15,7 @@ body {
 
 
 .listStyle {
-  text-align: center;
+
   padding-top: 50px;
 }
 
@@ -26,4 +26,10 @@ body {
 
 .loaded {
   opacity: 1;
+}
+
+.listItemClass {
+  text-align: center;
+  padding: 10px;
+
 }

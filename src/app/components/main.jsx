@@ -11,7 +11,7 @@ const Firebase = require('firebase');
 const ReactFire = require('reactfire');
 const rootUrl = 'https://materialtodo.firebaseio.com/';
 const IconButton = require('material-ui/lib/icon-button');
-
+const TableTest = require('./table-test.jsx')
 
 
 
@@ -76,7 +76,7 @@ const Main = React.createClass({
               <List items={this.state.items}/>
           </div>
 
-
+    
 
         </div>
       );

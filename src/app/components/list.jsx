@@ -1,22 +1,18 @@
 //renders list of todo
-//props: items={this.state.items}
+//props: items={this.state.items} from main.jsx
 
 const React = require('react');
-const Table= require('material-ui/lib/table/table');
-const TableBody= require('material-ui/lib/table/table-body');
-const TableFooter= require('material-ui/lib/table/table-footer');
-const TableHeader= require('material-ui/lib/table/table-header');
-const TableHeaderColumn= require('material-ui/lib/table/table-header-column');
-const TableRow= require('material-ui/lib/table/table-row');
-const TableRowColumn= require('material-ui/lib/table/table-row-column');
+const ListItem = require('./list-item.jsx');
+
+
 
 const List = React.createClass ({
   render () {
     //console.log("list ")
     //console.log(this.props.items)
-    return <div className = 'listStyle'>
-      {this.renderList()}
+    return <div className='listStyle'>
 
+      {this.renderList()}
     </div>
 
   },
@@ -24,8 +20,8 @@ const List = React.createClass ({
   renderList () {
 
     if (this.props.items && Object.keys(this.props.items).length === 0) {
-        console.log(Object.keys(this.props.items).length)
-        return <div>add a to do to get started!</div>
+      console.log(Object.keys(this.props.items).length)
+      return <div>add a to do to get started!</div>
     }
     else  {
       var children = []
@@ -34,7 +30,11 @@ const List = React.createClass ({
         //console.log(this.props.items[key][".key"])
         var thisItem = this.props.items[key]
         console.log(thisItem)
-        children.push(<li key = {thisItem[".key"]}>{thisItem[".value"]}</li>)
+        children.push(
+          <ListItem
+            key = {thisItem[".key"]}
+            item = {thisItem[".value"]}>
+          </ListItem>)
       }
       return children
     }
@@ -45,4 +45,3 @@ const List = React.createClass ({
 })
 
 module.exports = List;
-=
