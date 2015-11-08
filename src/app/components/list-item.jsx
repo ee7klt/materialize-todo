@@ -1,5 +1,5 @@
 // props
-//  item = {this.state.items[key] from list.jsx
+//  item = this.state.items[key] from list.jsx
 //    single to do from db
 
 const Card = require('material-ui/lib/card/card');
@@ -11,7 +11,7 @@ const rootUrl = 'https://materialtodo.firebaseio.com/';
 
 const ListItem = React.createClass ({
 
-  componentWillMount: function() {
+  componentWillMount () {
     // mount db at the todo level
     this.fb = new Firebase(rootUrl + 'items/' + this.props.item['.key']);
     //this.bindAsArray(this.fb, 'thisItem');
@@ -43,7 +43,7 @@ const ListItem = React.createClass ({
           margin: '0 auto',
         }}
         >
-        <CardText>{this.props.item}</CardText>
+        <CardText>{this.props.item.todo}</CardText>
         <CardActions>
           <FlatButton label="Done" onClick={this.handleDoneClick}/>
         </CardActions>

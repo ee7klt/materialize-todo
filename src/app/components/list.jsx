@@ -4,40 +4,43 @@
 
 const React = require('react');
 const ListItem = require('./list-item.jsx');
-
+const addTodo = require('./add-todo.jsx');
 
 
 const List = React.createClass ({
   render () {
     //console.log("list ")
     //console.log(this.props.items)
-    return <div className='listStyle'>
+    return this.renderList()
 
-      {this.renderList()}
-    </div>
 
   },
 
   renderList () {
 
     if (this.props.items && Object.keys(this.props.items).length === 0) {
-      //console.log(Object.keys(this.props.items).length)
-      return <div>add a to do to get started!</div>
+      console.log('list.jsx: no items. returning addTodo')
+      return <div>
+        <addTodo></addTodo>
+      </div>
     }
     else  {
       var children = []
       //console.log(this.props.items)
       for (var key in this.props.items) {
-        //console.log(this.props.items[key][".key"])
+        //console.log(this.props.items)
         var thisItem = this.props.items[key]
         //console.log(thisItem)
         children.unshift(
           <ListItem
             key = {thisItem[".key"]}
-            item = {thisItem[".value"]}>
+            item ={thisItem}>
           </ListItem>)
       }
-      return children
+        console.log('list.jsx: found items. returning children')
+      return <div className='listStyle'>
+            {children}
+          </div>
     }
   }
 
