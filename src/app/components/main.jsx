@@ -12,6 +12,8 @@ const ReactFire = require('reactfire');
 const rootUrl = 'https://materialtodo.firebaseio.com/';
 const IconButton = require('material-ui/lib/icon-button');
 const TableTest = require('./table-test.jsx')
+const LinearProgress = require('material-ui/lib/linear-progress');
+
 
 
 
@@ -55,11 +57,23 @@ const Main = React.createClass({
     this.setState({
       loaded: true
     })
-    setTimeout(function() {
-      console.log('main.jsx: db loaded? '+this.state.loaded)
-    }.bind(this),1000)
+    console.log('main.jsx: db loaded? '+this.state.loaded)
+    //setTimeout(function() {
+    //  console.log('main.jsx: db loaded? '+this.state.loaded)
+    //}.bind(this),1000)
   },
 
+
+  renderList() {
+
+    if (!this.state.loaded) {
+      return <LinearProgress mode="indeterminate"  />
+    } else {
+    return <div className = {"content" + (this.state.loaded ? " loaded":"") }>
+        <List items={this.state.items}/>
+    </div>
+    }
+  },
 
 
   render() {
@@ -74,9 +88,8 @@ const Main = React.createClass({
 
 
           <TodoInput todoStore = {this.fb}/>
-          <div className={"content" + (this.state.loaded ? " loaded":"")} >
-              <List items={this.state.items}/>
-          </div>
+          {this.renderList()}
+
 
 
 

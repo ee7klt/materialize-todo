@@ -29,12 +29,7 @@ body {
 }
 
 .listItemClass {
-
+  text-align: center;
   padding: 10px;
 
-}
-
-
-.addTodo {
-    text-align: center;
 }

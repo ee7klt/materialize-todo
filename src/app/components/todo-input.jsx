@@ -16,6 +16,7 @@ const TodoInput = React.createClass ({
       todo: this.refs.todoInput.getValue(),
       done: false
     })
+    this.refs.todoInput.clearValue()
     //console.log(this.props.todoStore)
   },
 

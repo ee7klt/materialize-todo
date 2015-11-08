@@ -4,7 +4,7 @@
 
 const React = require('react');
 const ListItem = require('./list-item.jsx');
-const addTodo = require('./add-todo.jsx');
+const AddTodo = require('./add-todo.jsx');
 
 
 const List = React.createClass ({
@@ -18,10 +18,10 @@ const List = React.createClass ({
 
   renderList () {
 
-    if (this.props.items && Object.keys(this.props.items).length === 0) {
+  if (this.props.items && Object.keys(this.props.items).length === 0) {
       console.log('list.jsx: no items. returning addTodo')
-      return <div>
-        <addTodo></addTodo>
+      return <div >
+        <AddTodo />
       </div>
     }
     else  {
