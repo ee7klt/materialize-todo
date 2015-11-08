@@ -46,7 +46,7 @@ const Main = React.createClass({
     this.fb = new Firebase('https://materialtodo.firebaseio.com/items/');
     this.bindAsArray(this.fb,'items')
     this.fb.on('value', this.handleDataLoaded)
-    //console.log(this.state.items)
+    console.log(this.state.items)
 
 
   },
@@ -76,7 +76,7 @@ const Main = React.createClass({
               <List items={this.state.items}/>
           </div>
 
-    
+
 
         </div>
       );
