@@ -8,14 +8,16 @@ const CardActions = require('material-ui/lib/card/card-actions');
 const FlatButton = require('material-ui/lib/flat-button');
 const React = require('react');
 const rootUrl = 'https://materialtodo.firebaseio.com/';
+const ReactFire = require('reactfire');
 
 const ListItem = React.createClass ({
-
+    mixins: [ReactFire],
   componentWillMount () {
     // mount db at the todo level
     this.fb = new Firebase(rootUrl + 'items/' + this.props.item['.key']);
-    //this.bindAsArray(this.fb, 'thisItem');
+    this.bindAsArray(this.fb, 'todo');
     //console.log(this.fb)
+    //console.log(this.state.todo)
   },
   log () {
     console.log(this.props.item+ ' ' + this.state.done)
@@ -25,7 +27,10 @@ const ListItem = React.createClass ({
     this.setState({
       done: true
     })
-    console.log(event.target.click)
+    this.fb.update({
+      done: true
+    })
+    //console.log(event.target.click)
 
     //setTimeout(this.log,2000)
 
@@ -36,6 +41,7 @@ const ListItem = React.createClass ({
     }
   },
   render () {
+    //console.log(this.state.todo)
     return <div className = "listItemClass">
       <Card
         style = {{

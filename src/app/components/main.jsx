@@ -12,7 +12,7 @@ const ReactFire = require('reactfire');
 const rootUrl = 'https://materialtodo.firebaseio.com/';
 const IconButton = require('material-ui/lib/icon-button');
 const TableTest = require('./table-test.jsx')
-const LinearProgress = require('material-ui/lib/linear-progress');
+const CircularProgress = require('material-ui/lib/circular-progress');
 
 
 
@@ -48,7 +48,7 @@ const Main = React.createClass({
     this.fb = new Firebase('https://materialtodo.firebaseio.com/items/');
     this.bindAsArray(this.fb,'items')
     this.fb.on('value', this.handleDataLoaded)
-    //console.log(this.state.items)
+      console.log(this.state.items)
 
 
   },
@@ -67,7 +67,7 @@ const Main = React.createClass({
   renderList() {
 
     if (!this.state.loaded) {
-      return <LinearProgress mode="indeterminate"  />
+      return <CircularProgress mode="indeterminate" className='progressStyle' />
     } else {
     return <div className = {"content" + (this.state.loaded ? " loaded":"") }>
         <List items={this.state.items}/>
