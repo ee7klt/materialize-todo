@@ -12,9 +12,11 @@ const AddTodo = require('./add-todo.jsx');
 
 const List = React.createClass ({
   render () {
-    //console.log("list ")
+    //console.log("this.props.done = "+this.props.done)
     //console.log(this.props.items)
+
     return this.renderList()
+
 
 
   },
@@ -28,18 +30,30 @@ const List = React.createClass ({
       </div>
     }
     else  {
-      var children = []
+      var children_todo = []
+      var children_done = []
       //console.log(this.props.items)
       for (var key in this.props.items) {
         //console.log(this.props.items)
         var thisItem = this.props.items[key]
         //console.log(thisItem)
         if (!thisItem.done) {
-        children.unshift(
+        children_todo.unshift(
           <ListItem
             key = {thisItem[".key"]}
             item ={thisItem}>
           </ListItem>)
+        } else {
+          children_done.unshift(
+            <ListItem
+              key = {thisItem[".key"]}
+              item ={thisItem}>
+            </ListItem>)
+        }
+        if (!this.props.done) {
+          var children = children_todo
+        } else {
+          var children = children_done
         }
       }
         console.log('list.jsx: found items. returning children')

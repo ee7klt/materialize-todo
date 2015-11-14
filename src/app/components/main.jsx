@@ -94,7 +94,7 @@ renderDone () {
 
         <Tabs>
 <Tab label = "To Do">
-          <TodoInput todoStore = {this.fb}/>
+<TodoInput todoStore = {this.fb}/>
           {this.renderList()}
 </Tab>
 <Tab label = "Done">
