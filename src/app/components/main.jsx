@@ -13,7 +13,8 @@ const rootUrl = 'https://materialtodo.firebaseio.com/';
 const IconButton = require('material-ui/lib/icon-button');
 const TableTest = require('./table-test.jsx')
 const CircularProgress = require('material-ui/lib/circular-progress');
-
+const Tabs = require('material-ui/lib/tabs/tabs');
+const Tab = require('material-ui/lib/tabs/tab');
 
 
 
@@ -70,11 +71,16 @@ const Main = React.createClass({
       return <CircularProgress mode="indeterminate" className='progressStyle' />
     } else {
     return <div className = {"content" + (this.state.loaded ? " loaded":"") }>
-        <List items={this.state.items}/>
+        <List items={this.state.items} done={false}/>
     </div>
     }
   },
 
+renderDone () {
+  return <div className = {"content" + (this.state.loaded ? " loaded":"") }>
+      <List items={this.state.items} done = {true}/>
+  </div>
+},
 
   render() {
 
@@ -86,11 +92,15 @@ const Main = React.createClass({
           title="Title"
           />
 
-
+        <Tabs>
+<Tab label = "To Do">
           <TodoInput todoStore = {this.fb}/>
           {this.renderList()}
-
-
+</Tab>
+<Tab label = "Done">
+ {this.renderDone()}
+</Tab>
+</Tabs>
 
 
         </div>

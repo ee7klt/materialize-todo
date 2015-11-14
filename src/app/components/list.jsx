@@ -1,6 +1,9 @@
 //renders list of todo
 //props: items={this.state.items} from main.jsx
 //    database of ALL todo items
+// props: done =
+//        true => "Done" tab
+//        false => "To Do" tab
 
 const React = require('react');
 const ListItem = require('./list-item.jsx');
@@ -31,16 +34,20 @@ const List = React.createClass ({
         //console.log(this.props.items)
         var thisItem = this.props.items[key]
         //console.log(thisItem)
+        if (!thisItem.done) {
         children.unshift(
           <ListItem
             key = {thisItem[".key"]}
             item ={thisItem}>
           </ListItem>)
+        }
       }
         console.log('list.jsx: found items. returning children')
+
       return <div className='listStyle'>
             {children}
           </div>
+
     }
   }
 
