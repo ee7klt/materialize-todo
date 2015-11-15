@@ -15,6 +15,7 @@ const TableTest = require('./table-test.jsx')
 const CircularProgress = require('material-ui/lib/circular-progress');
 const Tabs = require('material-ui/lib/tabs/tabs');
 const Tab = require('material-ui/lib/tabs/tab');
+const ListDone = require('./list-done.jsx');
 
 
 
@@ -71,14 +72,14 @@ const Main = React.createClass({
       return <CircularProgress mode="indeterminate" className='progressStyle' />
     } else {
     return <div className = {"content" + (this.state.loaded ? " loaded":"") }>
-        <List items={this.state.items} done={false}/>
+        <List items={this.state.items}/>
     </div>
     }
   },
 
 renderDone () {
   return <div className = {"content" + (this.state.loaded ? " loaded":"") }>
-      <List items={this.state.items} done = {true}/>
+      <ListDone items={this.state.items}/>
   </div>
 },
 

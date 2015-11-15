@@ -1,9 +1,7 @@
 //renders list of todo
 //props: items={this.state.items} from main.jsx
 //    database of ALL todo items
-// props: done =
-//        true => "Done" tab
-//        false => "To Do" tab
+
 
 const React = require('react');
 const ListItem = require('./list-item.jsx');
@@ -30,31 +28,20 @@ const List = React.createClass ({
       </div>
     }
     else  {
-      var children_todo = []
-      var children_done = []
+      var children = []
       //console.log(this.props.items)
       for (var key in this.props.items) {
         //console.log(this.props.items)
         var thisItem = this.props.items[key]
         //console.log(thisItem)
         if (!thisItem.done) {
-        children_todo.unshift(
+        children.unshift(
           <ListItem
             key = {thisItem[".key"]}
             item ={thisItem}>
           </ListItem>)
-        } else {
-          children_done.unshift(
-            <ListItem
-              key = {thisItem[".key"]}
-              item ={thisItem}>
-            </ListItem>)
         }
-        if (!this.props.done) {
-          var children = children_todo
-        } else {
-          var children = children_done
-        }
+
       }
         console.log('list.jsx: found items. returning children')
 
